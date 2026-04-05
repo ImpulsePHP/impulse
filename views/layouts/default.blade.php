@@ -4,40 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{{ $title ?? 'ImpulsePHP — Project' }}</title>
-    <!-- Link to compiled CSS (Tailwind output) if available -->
+    <!-- Tailwind CSS output (public/css/main.css) -->
     <link rel="stylesheet" href="/css/main.css" />
-    <style>
-        /* Minimal fallback styles when no CSS is present */
-        :root{color-scheme: light}
-        body{font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:#f8fafc;color:#0f172a;margin:0}
-        .container{max-width:1100px;margin:0 auto;padding:2rem}
-        header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem}
-        nav a{margin-left:1rem;color:#2563eb;text-decoration:none}
-        footer{color:#64748b;padding-top:2rem;font-size:.9rem}
-        pre{background:#0f172a;color:#e6eef8;padding:1rem;border-radius:.5rem;overflow:auto}
-    </style>
+    <!-- Minimal fallback for environments without Tailwind: keep sensible defaults in the CSS file instead -->
 </head>
-<body>
-    <div class="container">
-        <header>
+<body class="antialiased bg-slate-50 text-slate-900">
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <header class="flex items-center justify-between">
             <div>
-                <h1 style="margin:0;font-size:1.25rem;font-weight:700">ImpulsePHP Project</h1>
-                <div style="font-size:.9rem;color:#475569">A minimal starter project based on ImpulsePHP</div>
+                <h1 class="text-xl font-semibold leading-tight">ImpulsePHP Project</h1>
+                <div class="text-sm text-slate-500">A minimal starter project based on ImpulsePHP</div>
             </div>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/docs">Docs</a>
-                <a href="https://github.com/impulsephp" target="_blank" rel="noopener">GitHub</a>
+
+            <nav class="space-x-4 text-sm">
+                <a href="https://github.com/impulsephp" target="_blank" rel="noopener" class="text-indigo-600 hover:underline">GitHub</a>
             </nav>
         </header>
 
-        <main>
+        <main class="mt-6">
             {{ $slot }}
         </main>
 
-        <footer>
-            <div>Made with ❤️ — ImpulsePHP</div>
-            <div style="margin-top:.5rem">Public files served from <code>/public</code>. Run <code>php -S localhost:8000 -t public</code> to test locally.</div>
+        <footer class="mt-10 text-sm text-slate-500">
+            <div>Made with <span aria-hidden="true">❤️</span> — ImpulsePHP</div>
+            <div class="mt-2">Public files served from <code class="bg-slate-100 px-1 rounded">/public</code>. Run <code class="bg-slate-100 px-1 rounded">php -S localhost:8000 -t public</code> to test locally.</div>
         </footer>
     </div>
 

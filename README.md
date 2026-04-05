@@ -52,7 +52,6 @@ Then open http://localhost:8000 in your browser.
 
 ## Tips
 
-- If you add new Composer path packages (like the local `impulsephp/*` packages), run `composer dump-autoload`.
 - The project uses a minimal layout in `views/layouts/default.blade.php`. Customize it to fit your needs and add components in `views/`.
 
 ## License

@@ -6,56 +6,17 @@
     "ext-dom": "*",
     "ext-libxml": "*",
     "ext-openssl": "*",
-    "impulsephp/core": "*",
-    "impulsephp/js": "*",
-    "impulsephp/translation": "*",
-    "impulsephp/validator": "*",
-    "impulsephp/ui": "*",
-    "impulsephp/database": "*",
-    "impulsephp/auth": "*",
+    "impulsephp/core": "1.*",
+    "impulsephp/js": "1.*",
+    "impulsephp/translation": "1.*",
     "illuminate/view": "^12.19",
     "tedivm/jshrink": "^1.7"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest",
-    "impulsephp/story": "*"
+    "roave/security-advisories": "dev-latest"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../core"
-    },
-    {
-      "type": "path",
-      "url": "../js"
-    },
-    {
-      "type": "path",
-      "url": "../translation"
-    },
-    {
-      "type": "path",
-      "url": "../validator"
-    },
-    {
-      "type": "path",
-      "url": "../story"
-    },
-    {
-      "type": "path",
-      "url": "../ui"
-    },
-    {
-      "type": "path",
-      "url": "../database"
-    },
-    {
-      "type": "path",
-      "url": "../auth"
-    }
-  ],
   "autoload": {
     "psr-4": {
       "App\\": "src/"
