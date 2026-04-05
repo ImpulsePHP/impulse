@@ -1,60 +1,62 @@
-# ImpulsePHP Starter Project
 
-This repository is a minimal starter project for ImpulsePHP. It includes a simple layout, example page and minimal tooling to get started quickly.
+# Projet de démarrage ImpulsePHP
 
-## Requirements
+Ce dépôt est un projet minimal prêt à l'emploi pour démarrer avec ImpulsePHP. Il contient un layout simple, une page d'exemple et quelques outils minimaux pour commencer rapidement.
+
+## Prérequis
 
 - PHP 8.2+
 - Composer
-- (Optional) Node.js + npm for building Tailwind CSS
+- (Optionnel) Node.js et npm pour compiler Tailwind CSS
 
 ## Installation
 
-1. Clone the repository:
+1. Cloner le dépôt :
 
 ```bash
-git clone <repo-url> my-project
-cd my-project
+git clone <repo-url> mon-projet
+cd mon-projet
 ```
 
-2. Install PHP dependencies:
+2. Installer les dépendances PHP :
 
 ```bash
 composer install
 ```
 
-The Composer `post-install-cmd` will create symlinks for the `impulse.js` runtime into `public/` if the `impulsephp/js` package is available in `vendor/`.
+Le script `post-install-cmd` défini dans `composer.json` crée des liens symboliques vers `public/impulse.js` si le paquet `impulsephp/js` est présent dans `vendor/`.
 
-3. (Optional) Install Node dependencies and build Tailwind CSS:
+3. (Optionnel) Installer les dépendances Node et construire Tailwind CSS :
 
 ```bash
 npm install
-npm run watch:css # builds and watches assets/css -> public/css/main.css
+npm run watch:css # génère et surveille assets/css -> public/css/main.css
 ```
 
-## Running locally
+## Exécuter en local
 
-A simple way to run the project locally is to use PHP's built-in web server from the project root:
+Vous pouvez utiliser le serveur PHP intégré depuis la racine du projet :
 
 ```bash
 php -S localhost:8000 -t public
 ```
 
-Then open http://localhost:8000 in your browser.
+Puis ouvrez http://localhost:8000 dans votre navigateur.
 
-## Project structure (relevant files)
+## Structure du projet (fichiers importants)
 
-- `public/` — front controller and public assets
-- `views/` — Blade-like templates (`views/layouts/default.blade.php`, `views/pages/index.blade.php`)
-- `src/` — application code
-- `composer.json` — PHP dependencies and post-install scripts
-- `package.json` — Node scripts (Tailwind CSS)
+- `public/` — front controller et assets publics
+- `views/` — templates de type Blade (`views/layouts/default.blade.php`, `views/pages/index.blade.php`)
+- `src/` — code applicatif (pages / contrôleurs)
+- `composer.json` — dépendances PHP et scripts post-install
+- `package.json` — scripts Node (Tailwind CSS)
 
-## Tips
+## Conseils
 
-- The project uses a minimal layout in `views/layouts/default.blade.php`. Customize it to fit your needs and add components in `views/`.
+- Si vous n'utilisez pas Tailwind, placez un fichier CSS compatible dans `public/css/main.css` ou modifiez le lien dans le layout.
+- Après ajout ou modification de packages locaux (dossiers `impulsephp/*`), exécutez `composer dump-autoload`.
 
-## License
+## Licence
 
 MIT
 
