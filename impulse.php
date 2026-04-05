@@ -3,7 +3,9 @@
 use App\Layout\Default\DefaultLayout;
 
 return [
+    'app_name' => 'Mon projet Impulse',
     'env' => 'dev',
+    'debug' => true,
     'logs' => [
         'enabled' => true,
     ],
