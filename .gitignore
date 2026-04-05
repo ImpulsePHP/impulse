@@ -17,3 +17,4 @@
 # Lock files (optional - uncomment if you don't want to commit them)
 # composer.lock
 # package-lock.json
+/.idea/
