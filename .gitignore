@@ -1,0 +1,19 @@
+# Composer dependencies
+/vendor/
+
+# Node.js dependencies
+/node_modules/
+
+# Application runtime files
+/var/logs/*.log
+/var/storage/cache/*
+!/var/storage/cache/.gitkeep
+
+# Compiled and generated assets
+/public/impulse.js
+/public/impulse.js.map
+/public/*.css
+
+# Lock files (optional - uncomment if you don't want to commit them)
+# composer.lock
+# package-lock.json

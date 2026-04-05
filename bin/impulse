@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Impulse\Core\Console\MakeComponentCommand;
+use Impulse\Core\Console\MakePageCommand;
+use Impulse\Core\Console\MakeRendererCommand;
+use Impulse\Core\Console\RendererConfigureCommand;
+use Symfony\Component\Console\Application;
+
+$app = new Application('Impulse CLI', '1.0.0');
+$app->add(new RendererConfigureCommand());
+$app->add(new MakeRendererCommand());
+$app->add(new MakeComponentCommand());
+$app->add(new MakePageCommand());
+
+try {
+    $app->run();
+} catch (Exception $e) {
+    throw new RuntimeException($e->getMessage());
+}
