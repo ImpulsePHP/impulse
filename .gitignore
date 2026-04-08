@@ -8,6 +8,7 @@
 /var/logs/*.log
 /var/storage/*.sqlite
 /var/storage/cache/*
+/var/db/*
 !/var/storage/cache/.gitkeep
 
 # Compiled and generated assets
