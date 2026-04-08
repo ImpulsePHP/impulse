@@ -6,6 +6,7 @@
 
 # Application runtime files
 /var/logs/*.log
+/var/storage/*.sqlite
 /var/storage/cache/*
 !/var/storage/cache/.gitkeep
 

@@ -9,9 +9,10 @@ use Impulse\Core\Component\AbstractPage;
 
 #[PageProperty(
     route: '/',
-    name: 'homePage'
+    name: 'IndexPage',
+    title: 'Se connecter'
 )]
-class IndexPage extends AbstractPage
+final class IndexPage extends AbstractPage
 {
     public function template(): string
     {

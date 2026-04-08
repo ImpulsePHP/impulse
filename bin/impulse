@@ -10,10 +10,10 @@ use Impulse\Core\Console\RendererConfigureCommand;
 use Symfony\Component\Console\Application;
 
 $app = new Application('Impulse CLI', '1.0.0');
-$app->add(new RendererConfigureCommand());
-$app->add(new MakeRendererCommand());
-$app->add(new MakeComponentCommand());
-$app->add(new MakePageCommand());
+$app->addCommand(new RendererConfigureCommand());
+$app->addCommand(new MakeRendererCommand());
+$app->addCommand(new MakeComponentCommand());
+$app->addCommand(new MakePageCommand());
 
 try {
     $app->run();

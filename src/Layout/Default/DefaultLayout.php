@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Layout\Default;
 
+use Impulse\Core\Attributes\LayoutProperty;
 use Impulse\Core\Component\AbstractLayout;
 use Impulse\Core\Support\Collector\StyleCollector;
 
+#[LayoutProperty(
+    titlePrefix: 'ImpulsePHP'
+)]
 final class DefaultLayout extends AbstractLayout
 {
     public function setup(): void
