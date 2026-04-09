@@ -18,10 +18,10 @@ return array (
   array (
     0 => 'Impulse\\Db\\DbProvider',
     1 => 'Impulse\\Translation\\TranslatorProvider',
-    2 => 'Impulse\\Auth\\AuthProvider',
     3 => 'Impulse\\UI\\UIProvider',
     4 => 'Impulse\\Validator\\ValidatorProvider',
     5 => 'Impulse\\Story\\StoryProvider',
+    6 => 'Impulse\\Auth\\AuthProvider',
   ),
   'locale' => 'fr',
   'cache' => 
@@ -70,5 +70,8 @@ return array (
   'auth' => 
   array (
     'entity' => 'App\\Entity\\User',
+    'identifier_field' => 'email',
+    'password_field' => 'password',
+    'id_field' => 'id',
   ),
 );

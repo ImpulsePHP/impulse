@@ -18,6 +18,16 @@ use Impulse\Core\Http\Response;
  */
 final class LoginComponent extends AbstractComponent
 {
+    private AuthInterface $auth;
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function boot(): void
+    {
+        $this->auth = App::get(AuthInterface::class);
+    }
+
     public function setup(): void
     {
         $request = $this->getRequest();
@@ -25,18 +35,16 @@ final class LoginComponent extends AbstractComponent
         $this->states([
             'email' => $request->request()->get('email'),
             'password' => $request->request()->get('password'),
-            'error' => null,
-            'success' => $request->query()->get('registered') ? 'Compte créé avec succès. Vous pouvez maintenant vous connecter.' : null,
+            'error' => $request->getFlash('error'),
+            'success' => $request->getFlash('registered') ? 'Compte créé avec succès. Vous pouvez maintenant vous connecter.' : null,
         ]);
     }
 
     #[Action]
     public function login(): ?Response
     {
-        $auth = App::get(AuthInterface::class);
-
-        if ($auth->login($this->email, $this->password)) {
-            return Response::redirect('/account');
+        if ($this->auth->attempt($this->email, $this->password)) {
+            return Response::redirectToPage('DashboardPage');
         }
 
         http_response_code(401);

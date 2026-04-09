@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Page;
+namespace App\Page\Dashboard;
 
-use App\Middleware\CheckAuthMiddleware;
+use Impulse\Auth\Middleware\RequireAuthMiddleware;
 use Impulse\Core\Attributes\PageProperty;
 use Impulse\Core\Component\AbstractPage;
 
 #[PageProperty(
-    route: '/',
-    name: 'IndexPage',
-    title: 'Se connecter',
+    route: '/dashboard',
+    name: 'DashboardPage',
+    title: 'Dashboard',
     middlewares: [
-        CheckAuthMiddleware::class,
+        RequireAuthMiddleware::class
     ]
 )]
 final class IndexPage extends AbstractPage
 {
     public function template(): string
     {
-        return $this->view('pages.index');
+        return $this->view('pages.dashboard.index');
     }
 }

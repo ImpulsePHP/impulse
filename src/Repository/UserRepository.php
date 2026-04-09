@@ -1,71 +1,98 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\User;
 use Cycle\ORM\EntityManager;
 use Cycle\ORM\ORMInterface;
 use Cycle\ORM\RepositoryInterface;
-use Impulse\Auth\Contracts\UserRepositoryInterface;
-use Impulse\Auth\Domain\User as AuthUser;
-use Impulse\Database\Contrats\DatabaseInterface;
+use Cycle\ORM\Select;
+use Impulse\Core\App;
 
-final class UserRepository implements UserRepositoryInterface
+/**
+ * @implements RepositoryInterface<User>
+ */
+final class UserRepository implements RepositoryInterface
 {
-    private ?RepositoryInterface $repository;
     private ?ORMInterface $orm;
 
-    public function __construct(private readonly DatabaseInterface $database)
-    {
-        $this->orm = $this->database->getORM();
-        $this->repository = $this->orm->getRepository(User::class);
+    public function __construct(
+        ?ORMInterface $orm = null,
+        private readonly string $role = User::class,
+    ) {
+        $this->orm = $orm;
     }
 
-    public function findByIdentifier(string $identifier): ?object
+    public function findByPK(mixed $id): ?object
     {
-        $entity = $this->repository->findOne(['email' => $identifier]);
-        if (!$entity) {
-            return null;
+        return $this->select()->wherePK($id)->fetchOne();
+    }
+
+    public function findOne(array $scope = []): ?object
+    {
+        return $this->select()->fetchOne($scope);
+    }
+
+    public function findAll(array $scope = []): iterable
+    {
+        return $this->select()->where($scope)->fetchAll();
+    }
+
+    public function findByIdentifier(string $email): ?User
+    {
+        $user = $this->findByEmail($email);
+
+        return $user instanceof User ? $user : null;
+    }
+
+    public function findByEmail(string $email): ?User
+    {
+        $user = $this->findOne(['email' => $email]);
+
+        return $user instanceof User ? $user : null;
+    }
+
+    public function existsByEmail(string $email): bool
+    {
+        return $this->findByEmail($email) instanceof User;
+    }
+
+    public function register(string $email, string $plainPassword, array $roles = []): User
+    {
+        $user = (new User())
+            ->setEmail($email)
+            ->setPassword(password_hash($plainPassword, PASSWORD_DEFAULT))
+            ->setRoles($roles)
+            ->setCreatedAt(null)
+            ->setUpdatedAt(new \DateTimeImmutable());
+
+        return $this->save($user);
+    }
+
+    public function save(User $user): User
+    {
+        if ($user->getCreatedAt() === null) {
+            $user->setCreatedAt(null);
         }
 
-        return $this->toAuthUserFromEntity($entity);
+        $user->setUpdatedAt(new \DateTimeImmutable());
+
+        $entityManager = new EntityManager($this->orm());
+        $entityManager->persist($user);
+        $entityManager->run();
+
+        return $user;
     }
 
-    public function findById(int|string $id): ?object
+    private function select(): Select
     {
-        $entity = $this->repository->findByPK($id);
-        if (!$entity) {
-            return null;
-        }
-
-        return $this->toAuthUserFromEntity($entity);
+        return new Select($this->orm(), $this->role);
     }
 
-    /**
-     * @throws \Throwable
-     */
-    public function save(object $entity): void
+    private function orm(): ORMInterface
     {
-        if (!$entity instanceof User) {
-            throw new \DomainException('L\'objet fournis doit être de type '. User::class);
-        }
-
-        $manager = new EntityManager($this->orm);
-        $manager->persist($entity);
-        $manager->run();
-    }
-
-    private function toAuthUserFromEntity(object $entity): AuthUser
-    {
-        $id = method_exists($entity, 'getId') ? $entity->getId() : ($entity->id ?? null);
-        $email = method_exists($entity, 'getEmail') ? $entity->getEmail() : ($entity->email ?? null);
-        $password = method_exists($entity, 'getPassword') ? $entity->getPassword() : ($entity->password ?? null);
-
-        return new AuthUser(
-            id: $id,
-            email: $email ?? '',
-            passwordHash: $password ?? '',
-            roles: []
-        );
+        return $this->orm ??= App::get(ORMInterface::class);
     }
 }

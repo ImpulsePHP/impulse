@@ -3,27 +3,28 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Cycle\Annotated\Annotation as Cycle;
+use Cycle\Annotated\Annotation\Column;
+use Cycle\Annotated\Annotation\Entity;
 
-#[Cycle\Entity(repository: UserRepository::class)]
+#[Entity(repository: UserRepository::class)]
 class User
 {
-    #[Cycle\Column(type: 'primary')]
+    #[Column(type: 'primary')]
     private ?int $id = null;
 
-    #[Cycle\Column(type: 'string', unique: true)]
+    #[Column(type: 'string', unique: true)]
     private ?string $email = null;
 
-    #[Cycle\Column(type: 'string')]
+    #[Column(type: 'string')]
     private ?string $password = null;
 
-    #[Cycle\Column(type: 'json')]
+    #[Column(type: 'json', typecast: 'json')]
     private array $roles = [];
 
-    #[Cycle\Column(type: 'datetime')]
+    #[Column(type: 'datetime')]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[Cycle\Column(type: 'datetime')]
+    #[Column(type: 'datetime')]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int

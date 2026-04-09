@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Component;
 
-use App\Entity\User;
-use Impulse\Auth\Contracts\UserRepositoryInterface;
+use App\Repository\UserRepository;
 use Impulse\Core\App;
 use Impulse\Core\Attributes\Action;
 use Impulse\Core\Component\AbstractComponent;
@@ -33,6 +32,7 @@ final class RegisterComponent extends AbstractComponent
     #[Action]
     public function save(): ?Response
     {
+        /** @var ValidatorInterface $validator */
         $validator = App::get(ValidatorInterface::class);
 
         $emailError = $validator->validateField('email', $this->email, 'required|email');
@@ -45,10 +45,9 @@ final class RegisterComponent extends AbstractComponent
             return null;
         }
 
-        $userRepository = App::get(UserRepositoryInterface::class);
+        $userRepository = new UserRepository();
 
-        // Vérifie si l'utilisateur existe déjà
-        if ($userRepository->findByIdentifier($this->email) !== null) {
+        if ($userRepository->existsByEmail($this->email)) {
             http_response_code(409);
 
             $this->error = 'Un utilisateur avec cet e-mail existe déjà.';
@@ -57,16 +56,12 @@ final class RegisterComponent extends AbstractComponent
             return null;
         }
 
-        // Hash du mot de passe puis création et sauvegarde de l'utilisateur
-        $hashed = password_hash($this->password, PASSWORD_DEFAULT);
-        $newUser = (new User())
-            ->setEmail($this->email)
-            ->setPassword($hashed)
-        ;
+        $userRepository->register($this->email, $this->password);
 
-        $userRepository->save($newUser);
+        $request = $this->getRequest();
+        $request->flash('registered', true);
 
-        return Response::redirect('/?registered=1');
+        return Response::redirectToPage('IndexPage');
     }
 
     private function getError(): ?string
