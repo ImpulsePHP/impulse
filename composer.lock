@@ -1333,7 +1333,7 @@
             "dist": {
                 "type": "path",
                 "url": "../core",
-                "reference": "8d761470714f5d9b3d5a91922d9740b70b803948"
+                "reference": "b0bc97dba974fb31e98b98cc82532f18caa52a54"
             },
             "require": {
                 "ext-dom": "*",
@@ -1443,7 +1443,7 @@
             "dist": {
                 "type": "path",
                 "url": "../js",
-                "reference": "6a6e20176e4a3addf95720ac72fdee71e8c22dce"
+                "reference": "d077970f9d1eea265c6d2d71cf06b7509e1c21af"
             },
             "type": "library",
             "license": [
