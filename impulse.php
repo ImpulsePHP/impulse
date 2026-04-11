@@ -17,7 +17,8 @@ return array (
   'providers' => 
   array (
     0 => 'Impulse\\Db\\DbProvider',
-    1 => 'Impulse\\Translation\\TranslatorProvider',
+    1 => 'Impulse\\Fixtures\\FixturesProvider',
+    2 => 'Impulse\\Translation\\TranslatorProvider',
     3 => 'Impulse\\UI\\UIProvider',
     4 => 'Impulse\\Validator\\ValidatorProvider',
     5 => 'Impulse\\Story\\StoryProvider',
@@ -73,5 +74,20 @@ return array (
     'identifier_field' => 'email',
     'password_field' => 'password',
     'id_field' => 'id',
+  ),
+  'fixtures' => 
+  array (
+    'locale' => 'fr_FR',
+    'seed' => 20260411,
+    'paths' => 
+    array (
+      0 => 'src/Fixture',
+      1 => 'tests/Fixtures',
+    ),
+    'story_paths' => 
+    array (
+      0 => 'src/Fixture/Story',
+      1 => 'tests/Fixtures/Story',
+    ),
   ),
 );

@@ -13,6 +13,7 @@
     "impulsephp/ui": "*",
     "impulsephp/db": "*",
     "impulsephp/auth": "*",
+    "impulsephp/fixtures": "*",
     "impulsephp/story": "*",
     "illuminate/view": "^12.19",
     "tedivm/jshrink": "^1.7"
@@ -54,6 +55,10 @@
     {
       "type": "path",
       "url": "../auth"
+    },
+    {
+      "type": "path",
+      "url": "../fixtures"
     }
   ],
   "autoload": {

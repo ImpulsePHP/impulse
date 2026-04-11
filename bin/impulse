@@ -7,6 +7,8 @@ use Impulse\Core\Console\MakeComponentCommand;
 use Impulse\Core\Console\MakePageCommand;
 use Impulse\Core\Console\MakeRendererCommand;
 use Impulse\Core\Console\RendererConfigureCommand;
+use Impulse\Fixtures\Console\MakeFixtureCommand;
+use Impulse\Fixtures\Console\RunFixturesCommand;
 use Symfony\Component\Console\Application;
 
 $app = new Application('Impulse CLI', '1.0.0');
@@ -14,6 +16,8 @@ $app->addCommand(new RendererConfigureCommand());
 $app->addCommand(new MakeRendererCommand());
 $app->addCommand(new MakeComponentCommand());
 $app->addCommand(new MakePageCommand());
+$app->addCommand(new MakeFixtureCommand());
+$app->addCommand(new RunFixturesCommand());
 
 try {
     $app->run();
