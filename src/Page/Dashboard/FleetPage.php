@@ -10,18 +10,18 @@ use Impulse\Core\Attributes\PageProperty;
 use Impulse\Core\Component\AbstractPage;
 
 #[PageProperty(
-    route: '/dashboard',
-    name: 'DashboardPage',
-    title: 'Dashboard',
+    route: '/dashboard/fleet',
+    name: 'FleetDashboardPage',
+    title: 'Pilotage du parc',
     middlewares: [
         RequireAuthMiddleware::class,
         AuthorizeMiddleware::class,
     ]
 )]
-final class IndexPage extends AbstractPage
+final class FleetPage extends AbstractPage
 {
     public function template(): string
     {
-        return $this->view('pages.dashboard.index');
+        return $this->view('pages.dashboard.fleet');
     }
 }

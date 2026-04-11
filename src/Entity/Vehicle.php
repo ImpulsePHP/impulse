@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Policy\VehiclePolicy;
 use App\Repository\VehicleRepository;
 use Cycle\Annotated\Annotation\Column;
 use Cycle\Annotated\Annotation\Entity;
+use Impulse\Acl\Attributes\Policy;
 
+#[Policy(VehiclePolicy::class)]
 #[Entity(repository: VehicleRepository::class, table: 'vehicles')]
 class Vehicle
 {

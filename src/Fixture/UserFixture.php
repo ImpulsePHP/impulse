@@ -33,7 +33,7 @@ final class UserFixture extends AbstractFixture
             'garage' => $this->makeUser(
                 email: 'garage@impulse.test',
                 plainPassword: 'password',
-                roles: ['ROLE_USER'],
+                roles: ['ROLE_FLEET_MANAGER'],
                 createdAt: $now->modify('-8 days'),
             ),
         ];

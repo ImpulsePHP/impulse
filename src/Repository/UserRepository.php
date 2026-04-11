@@ -59,7 +59,7 @@ final class UserRepository implements RepositoryInterface
         return $this->findByEmail($email) instanceof User;
     }
 
-    public function register(string $email, string $plainPassword, array $roles = []): User
+    public function register(string $email, string $plainPassword, array $roles = ['ROLE_USER']): User
     {
         $user = (new User())
             ->setEmail($email)

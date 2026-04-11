@@ -13,6 +13,7 @@
     "impulsephp/ui": "*",
     "impulsephp/db": "*",
     "impulsephp/auth": "*",
+    "impulsephp/acl": "*",
     "impulsephp/fixtures": "*",
     "impulsephp/story": "*",
     "illuminate/view": "^12.19",
@@ -55,6 +56,10 @@
     {
       "type": "path",
       "url": "../auth"
+    },
+    {
+      "type": "path",
+      "url": "../acl"
     },
     {
       "type": "path",

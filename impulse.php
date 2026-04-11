@@ -17,12 +17,13 @@ return array (
   'providers' => 
   array (
     0 => 'Impulse\\Db\\DbProvider',
-    1 => 'Impulse\\Fixtures\\FixturesProvider',
-    2 => 'Impulse\\Translation\\TranslatorProvider',
-    3 => 'Impulse\\UI\\UIProvider',
-    4 => 'Impulse\\Validator\\ValidatorProvider',
-    5 => 'Impulse\\Story\\StoryProvider',
-    6 => 'Impulse\\Auth\\AuthProvider',
+    1 => 'Impulse\\Auth\\AuthProvider',
+    2 => 'Impulse\\Fixtures\\FixturesProvider',
+    3 => 'Impulse\\Translation\\TranslatorProvider',
+    4 => 'Impulse\\UI\\UIProvider',
+    5 => 'Impulse\\Validator\\ValidatorProvider',
+    6 => 'Impulse\\Story\\StoryProvider',
+    7 => 'Impulse\\Acl\\AclProvider',
   ),
   'locale' => 'fr',
   'cache' => 
